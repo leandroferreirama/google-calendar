@@ -76,4 +76,19 @@ class Schedule extends GoogleCalendar
         );
         return $this;
     }
+
+    public function cancel(string $eventId, ?string $calendaId = 'primary'): Schedule
+    {
+        $schedule = [
+            "status" => 'canceled'
+        ];
+        
+        $this->request(
+            "PUT",
+            "v3/calendars/{$calendaId}/events/{$eventId}",
+            $schedule,
+            ["Content-Type" => "application/json"]
+        );
+        return $this;
+    }
 }
