@@ -77,7 +77,7 @@ class Schedule extends GoogleCalendar
         return $this;
     }
 
-    public function cancel(string $eventId, ?string $calendaId = 'primary'): Schedule
+    public function delete(string $eventId, ?string $calendaId = 'primary'): Schedule
     {   
         $this->request(
             "DELETE",
