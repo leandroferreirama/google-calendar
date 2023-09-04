@@ -27,12 +27,28 @@ class Calendar extends GoogleCalendar
 
     public function timezone(?array $headers): ?string
     {
+
         $this->request(
-            "GET",
+            "POST",
             "v3/users/me/settings/timezone",
             null,
             $headers
         );
         return $this->response()->value;
+    }
+
+    public function insert(string $summary): Calendar
+    {
+        $calendar = [
+            "summary" => $summary
+        ]; 
+
+        $this->request(
+            "POST",
+            "v3/calendars",
+            $calendar,
+            ["Content-Type" => "application/json"]
+        );
+        return $this;
     }
 }

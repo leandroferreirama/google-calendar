@@ -2,13 +2,19 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
-use LeandroFerreiraMa\GoogleAuth\Auth;
 use LeandroFerreiraMa\GoogleCalendar\Calendar;
 
 $token = 'ya29.**';
+
 $calendar = new Calendar(
     $token
 );
+
+echo "<h1>Insert Calendar</h1>";
+
+$calendarInsert = $calendar->insert('teste de cadastro');
+var_dump($calendarInsert);
+
 
 /**
  * READ
