@@ -13,7 +13,7 @@ $calendar = new Calendar(
 echo "<h1>Insert Calendar</h1>";
 
 $calendarInsert = $calendar->insert('teste de cadastro');
-var_dump($calendarInsert);
+var_dump($calendarInsert->response());
 
 
 /**

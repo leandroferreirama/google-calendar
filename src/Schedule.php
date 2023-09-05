@@ -12,7 +12,7 @@ class Schedule extends GoogleCalendar
         parent::__construct($token);
     }
 
-    public function read(?array $headers, ?string $syncToken, ?DateTime $startDate = null): Schedule
+    public function read(?array $headers, ?string $syncToken, ?DateTime $startDate = null, ?string $calendaId = 'primary'): Schedule
     {
         $url_parameters = array();
 
@@ -29,7 +29,7 @@ class Schedule extends GoogleCalendar
         
         $this->request(
             "GET",
-            "v3/calendars/primary/events?". http_build_query($url_parameters),
+            "v3/calendars/{$calendaId}/events?". http_build_query($url_parameters),
             null,
             $headers
         );
