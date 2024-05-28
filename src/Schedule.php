@@ -15,7 +15,7 @@ class Schedule extends GoogleCalendar
     public function read(?array $headers, ?string $syncToken, ?DateTime $startDate = null, ?string $calendaId = 'primary'): Schedule
     {
         $url_parameters = array();
-var_dump("ANTES CONSULTA");
+
         if(!empty($syncToken)){
             $url_parameters['syncToken'] = strip_tags($syncToken);
         } else {
@@ -26,8 +26,7 @@ var_dump("ANTES CONSULTA");
             }
             $url_parameters['timeMin'] = $startDate->format(DATE_W3C);
         }
-        var_dump("<br>DEPOIS CONSULTA<br>");
-                var_dump($url_parameters);
+
         $this->request(
             "GET",
             "v3/calendars/{$calendaId}/events?". http_build_query($url_parameters),
