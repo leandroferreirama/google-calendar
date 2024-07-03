@@ -12,7 +12,7 @@ class Schedule extends GoogleCalendar
         parent::__construct($token);
     }
 
-    public function read(?array $headers, ?string $syncToken, ?DateTime $startDate = null, ?string $calendaId = 'primary'): Schedule
+    public function read(?array $headers, ?string $syncToken, ?DateTime $startDate = null, ?string $calendaId = 'primary', ?int $period = 1): Schedule
     {
         $url_parameters = array();
 
@@ -21,7 +21,7 @@ class Schedule extends GoogleCalendar
         } else {
             if(is_null($startDate)){
                 $startDate = new DateTime('now');
-                $interval = new DateInterval("P1D");
+                $interval = new DateInterval("P{$period}D");
                 $startDate->sub($interval);
             }
             $url_parameters['timeMin'] = $startDate->format(DATE_W3C);
